@@ -42,9 +42,5 @@
   <ItemGroup>
     <Folder Include="Exceptions\" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="readme.md" />
-    <None Include=".gitignore" />
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
