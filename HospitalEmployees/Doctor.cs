@@ -49,7 +49,11 @@ namespace HospitalEmployees
         }
         public List<int> Shifts
         {
-            get { return Shifts; }
+            get
+            {
+                Shifts.Sort();
+                return Shifts;
+            }
             set
             {
                 if (Shifts.Count > 10)
@@ -80,5 +84,10 @@ namespace HospitalEmployees
             }
         }
 
+        public void RemoveShift(int index)
+        {
+            Shifts.Remove(index);
+            Shifts.Sort();
+        }
     }
 }

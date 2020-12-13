@@ -38,6 +38,7 @@
     <Compile Include="Exceptions\BadSpecializationException.cs" />
     <Compile Include="Exceptions\TooManyShiftsException.cs" />
     <Compile Include="Exceptions\AddShiftFailureException.cs" />
+    <Compile Include="Nurse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
