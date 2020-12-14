@@ -39,6 +39,7 @@
     <Compile Include="Exceptions\TooManyShiftsException.cs" />
     <Compile Include="Exceptions\AddShiftFailureException.cs" />
     <Compile Include="Nurse.cs" />
+    <Compile Include="Administrator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
