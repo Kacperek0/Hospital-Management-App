@@ -3,6 +3,7 @@ namespace HospitalEmployees
 {
     public class Employee
     {
+        private string type = "emp";
         public string Name;
         public string Surname;
         public int PESEL
@@ -30,6 +31,11 @@ namespace HospitalEmployees
             this.PESEL = PESEL;
             this.login = login;
             this.password = password;
+        }
+
+        public virtual string Export()
+        {
+            return $"{type};{Name};{Surname};{PESEL};{login};{password};null;null;null"; ;
         }
     }
 }

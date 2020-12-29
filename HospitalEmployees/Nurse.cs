@@ -5,6 +5,8 @@ namespace HospitalEmployees
 {
     public class Nurse: Employee
     {
+        private string type = "nurse";
+
         public List<int> Shifts
         {
             get
@@ -43,6 +45,17 @@ namespace HospitalEmployees
         {
             Shifts.Remove(index);
             Shifts.Sort();
+        }
+
+        public override string Export()
+        {
+            string shifts_toexport = "";
+
+            foreach (int item in Shifts)
+            {
+                shifts_toexport += $"{item},";
+            }
+            return $"{type};{Name};{Surname};{PESEL};{login};{password};{shifts_toexport};null;null"; ;
         }
     }
 }

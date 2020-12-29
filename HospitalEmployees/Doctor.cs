@@ -5,6 +5,7 @@ namespace HospitalEmployees
 {
     public class Doctor: Employee
     {
+        private string type = "doctor";
         public int PWZnumber
         {
             get { return PWZnumber;  }
@@ -88,6 +89,17 @@ namespace HospitalEmployees
         {
             Shifts.Remove(index);
             Shifts.Sort();
+        }
+
+        public override string Export()
+        {
+            string shifts_toexport = "";
+
+            foreach (int item in Shifts)
+            {
+                shifts_toexport += $"{item},";
+            }
+            return $"{type};{Name};{Surname};{PESEL};{login};{password};{shifts_toexport};{PWZnumber};{Specialization}";
         }
     }
 }
