@@ -5,7 +5,7 @@ namespace HospitalEmployees
     {
         private string type = "admin";
 
-        public Administrator(string name, string surname, int PESEL, string login, string password) :
+        public Administrator(string name, string surname, string PESEL, string login, string password) :
                 base(name, surname, PESEL, login, password)
         {
         }
