@@ -7,25 +7,26 @@ namespace HospitalEmployees
     {
         private string type = "nurse";
 
-        public List<int> Shifts
-        {
-            get
-            {
-                Shifts.Sort();
-                return Shifts;
-            }
-            set
-            {
-                if (Shifts.Count > 10)
-                {
-                    throw new Exceptions.TooManyShiftsException();
-                }
-            }
-        }
+        public List<int> Shifts;
+        //{
+        //    get
+        //    {
+        //        Shifts.Sort();
+        //        return Shifts;
+        //    }
+        //    set
+        //    {
+        //        if (Shifts.Count > 10)
+        //        {
+        //            throw new Exceptions.TooManyShiftsException();
+        //        }
+        //    }
+        //}
 
-        public Nurse(string name, string surname, int PESEL, string login, string password) :
+        public Nurse(string name, string surname, string PESEL, string login, string password) :
                 base(name, surname, PESEL, login, password)
         {
+            Shifts = new List<int>();
         }
 
         public void AddShift(int day)
@@ -45,6 +46,14 @@ namespace HospitalEmployees
         {
             Shifts.Remove(index);
             Shifts.Sort();
+        }
+
+        public void ShowShifts()
+        {
+            foreach (var item in Shifts)
+            {
+                Console.Write($"{item}, ");
+            }
         }
 
         public override string Export()
