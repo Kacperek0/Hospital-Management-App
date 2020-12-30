@@ -3,86 +3,78 @@ using System.Collections.Generic;
 using System.Threading;
 using HospitalEmployees;
 using System.IO;
-using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.Model;
 
 namespace HospitalApp
 {
     public class Menu
     {
+        protected Data Data;
+        private string version = "0.1 pre-alpha";
+
         public Menu()
         {
-            string path = "/hospital.csv";
-            string awsAccessKeyId = "";
-            string awsSecretAccessKey = "";
-
-            List<Doctor> Doctors = new List<Doctor>();
-            List<Nurse> Nurses = new List<Nurse>();
-            List<Administrator> Administrators = new List<Administrator>();
-
-
-
-            string version = "0.1 pre-alpha";
-            while (true)
+            try
             {
-                Console.WriteLine("------ Hospital Mgmt App ------\n" +
-                    $"v. {version}\n" +
-                    $"\n" +
-                    $"\n" +
-                    $"Please press button to continue...\n\n");
-                Console.WriteLine("1. Log in\n" +
-                    "0. Exit\n");
-                int menuSelect = int.Parse(Console.ReadLine());
-                switch (menuSelect)
+                Data = new Data();
+                bool state = true;
+                while (state)
                 {
-                    case 1:
+                    try
+                    {
+                        Console.WriteLine
+                        (
+                            "------ Hospital Mgmt App ------\n" +
+                            $"v. {version}\n" +
+                            $"\n" +
+                            $"\n" +
+                            $"Please press button to continue...\n\n");
+                        Console.WriteLine("1. Log in\n" +
+                        "0. Exit\n"
+                            );
+                        int menuSelect = int.Parse(Console.ReadLine());
+                        switch (menuSelect)
                         {
-
-                            break;
+                            case 1:
+                                {
+                                    new Login(); //not printing content :not_stonks:
+                                    break;
+                                }
+                            case 0:
+                                {
+                                    Data.DataExport();
+                                    Console.WriteLine("Thank you. Bye");
+                                    Thread.Sleep(1000);
+                                    break;
+                                }
+                            default:
+                                {
+                                    Console.WriteLine("Try again...");
+                                    Thread.Sleep(1000);
+                                    break;
+                                }
                         }
-                    case 0:
-                        {
-                            DataExport();
-                            Console.WriteLine("Thank you. Bye");
-                            Thread.Sleep(5000);
-                            break;
-                        }
-                    default:
-                        break;
+                        state = false;
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        Console.WriteLine("Null here? Good try :), but please try again.");
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Bad input format. Please try with numbers!");
+                    }
+                    catch (OverflowException)
+                    {
+                        Console.WriteLine("Overflow, please try with numbers only!");
+                    }
+
                 }
+                    
             }
-
-
-            void DataLoader()
+            catch (FileNotFoundException)
             {
-                var client = new AmazonDynamoDBClient(awsAccessKeyId, awsSecretAccessKey);
-                var request = new ScanRequest
-                {
-                    TableName = "HospitalApp",
-                };
-                var response = client.Scan(request);
-
-                foreach (Dictionary<string, AttributeValue> item in response.Items)
-                {
-                    Console.WriteLine(item);
-                }
-            }
-
-            void DataExport()
-            {
-                StreamWriter writer = new StreamWriter(path);
-                foreach (var item in Doctors)
-                {
-                    writer.WriteLine(item.Export());
-                }
-                foreach (var item in Nurses)
-                {
-                    writer.WriteLine(item.Export());
-                }
-                foreach (var item in Administrators)
-                {
-                    writer.WriteLine(item.Export());
-                }
+                Console.WriteLine("Please place data file in your home directory and press any button to try again.");
+                Console.ReadKey();
             }
         }
     }
