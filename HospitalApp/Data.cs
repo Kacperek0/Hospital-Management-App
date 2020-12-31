@@ -64,31 +64,32 @@ namespace HospitalApp
 
         }
 
-        public int[] IsLoggedIn(string login, string password)
+        public string IsLoggedIn(string login, string password)
         {
-            int[] result = new int[] { 0, 0 };
+            string result = "";
             foreach (var item in Doctors)
             {
                 if (item.Login(login, password) == true)
                 {
-                    result = new int[] { 1, 1 };
-                    return result;
+                    string inner_result = "doctor";
+                    return inner_result;
                 }
             }
             foreach (var item in Nurses)
             {
                 if (item.Login(login, password) == true)
                 {
-                    result = new int[] { 1, 2 };
-                    return result;
+                    string inner_result = "nurse";
+                    result = inner_result;
                 }
             }
             foreach (var item in Administrators)
             {
                 if (item.Login(login, password) == true)
                 {
-                    result = new int[] { 1, 0 };
-                    return result;
+                    Console.WriteLine("dupa");
+                    string inner_result = "admin";
+                    result = inner_result;
                 }
             }
             return result;

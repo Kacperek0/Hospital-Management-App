@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace HospitalEmployees
 {
@@ -109,6 +110,17 @@ namespace HospitalEmployees
                 shifts_toexport += $"{item},";
             }
             return $"{type};{Name};{Surname};{PESEL};{login};{password};{shifts_toexport};{PWZnumber};{Specialization}";
+        }
+
+        public bool Login(string login, string password)
+        {
+            if (base.login == login && base.password == password)
+            {
+                Console.WriteLine("You have logged in successfully.");
+                Thread.Sleep(1000);
+                return true;
+            }
+            else return false;
         }
     }
 }

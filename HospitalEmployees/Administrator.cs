@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+
 namespace HospitalEmployees
 {
     public class Administrator: Employee
@@ -15,5 +17,15 @@ namespace HospitalEmployees
             return $"{type};{Name};{Surname};{PESEL};{login};{password};null;null;null";
         }
 
+        public bool Login(string login, string password)
+        {
+            if (base.login == login && base.password == password)
+            {
+                Console.WriteLine("You have logged in successfully.");
+                Thread.Sleep(1000);
+                return true;
+            }
+            else return false;
+        }
     }
 }

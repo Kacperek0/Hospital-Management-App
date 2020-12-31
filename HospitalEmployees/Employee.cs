@@ -35,16 +35,16 @@ namespace HospitalEmployees
             this.password = password;
         }
 
-        public bool Login(string login, string password)
-        {
-            if (this.login == login && this.password == password)
-            {
-                Console.WriteLine("You have logged in successfully.");
-                Thread.Sleep(1000);
-                return true;
-            }
-            else return false;
-        }
+        //protected virtual bool Login(string login, string password)
+        //{
+        //    if (this.login == login && this.password == password)
+        //    {
+        //        Console.WriteLine("You have logged in successfully.");
+        //        Thread.Sleep(1000);
+        //        return true;
+        //    }
+        //    else return false;
+        //}
 
         public virtual string Export()
         {

@@ -8,14 +8,12 @@ namespace HospitalApp
 {
     public class Menu
     {
-        protected Data Data;
         private string version = "0.1 pre-alpha";
 
         public Menu()
         {
             try
             {
-                Data = new Data();
                 while (true)
                 {
                     try
@@ -34,38 +32,13 @@ namespace HospitalApp
                         if (menuSelect == 1)
                         {
                             Login login = new Login();
-                            login.Run();
                         }
                         else if (menuSelect == 0)
                         {
-                            Data.DataExport();
                             Console.WriteLine("Thank you. Bye");
                             Thread.Sleep(1000);
                             Environment.Exit(1);
                         }
-
-                        //switch (menuSelect)
-                        //{
-                        //    case 1:
-                        //        {
-                        //            new Login();
-                        //            break;
-                        //        }
-                        //    case 0:
-                        //        {
-                        //            Data.DataExport();
-                        //            Console.WriteLine("Thank you. Bye");
-                        //            Thread.Sleep(1000);
-                        //            Environment.Exit(1);
-                        //            break;
-                        //        }
-                        //    default:
-                        //        {
-                        //            Console.WriteLine("Try again...");
-                        //            Thread.Sleep(1000);
-                        //            break;
-                        //        }
-                        //}
                     }
                     catch (ArgumentNullException)
                     {

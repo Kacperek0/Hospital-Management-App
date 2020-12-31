@@ -4,23 +4,16 @@ using System.Threading;
 
 namespace HospitalApp
 {
-    public class Login: Menu
+    public class Login
     {
+        protected Data data;
         protected string login;
         protected string password;
 
-        private int[] admLogin = new int[] { 1, 0 };
-        private int[] doctorLogin = new int[] { 1, 1 };
-        private int[] nurseLogin = new int[] { 1, 2 };
-        private int[] failedLogin = new int[] { 0, 0 };
-
         public Login()
         {
+            data = new Data();
 
-        }
-
-        public void Run()
-        {
             while (true)
             {
                 Console.WriteLine
@@ -33,6 +26,7 @@ namespace HospitalApp
                 login = Console.ReadLine();
                 if (login == "0")
                 {
+                    data.DataExport();
                     new Menu();
                 }
                 else
@@ -40,17 +34,19 @@ namespace HospitalApp
                     Console.WriteLine("Please input your password.");
                     password = Console.ReadLine();
 
-                    int[] credentials = Data.IsLoggedIn(login, password);
+                    Console.WriteLine(data.IsLoggedIn(login, password));
 
-                    if (credentials.SequenceEqual(admLogin))
+                    string credentials = data.IsLoggedIn(login, password);
+
+                    if (credentials == "admin")
                     {
                         Console.WriteLine("admSubmenu here");
                     }
-                    else if (credentials.SequenceEqual(doctorLogin))
+                    else if (credentials == "doctor")
                     {
                         Console.WriteLine("Doc login menu");
                     }
-                    else if (credentials.SequenceEqual(nurseLogin))
+                    else if (credentials == "nurse")
                     {
                         Console.WriteLine("Nurse login");
                     }
@@ -62,5 +58,6 @@ namespace HospitalApp
                 }
             }
         }
+
     }
 }
