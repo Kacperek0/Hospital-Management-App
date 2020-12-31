@@ -16,8 +16,7 @@ namespace HospitalApp
             try
             {
                 Data = new Data();
-                bool state = true;
-                while (state)
+                while (true)
                 {
                     try
                     {
@@ -32,28 +31,41 @@ namespace HospitalApp
                         "0. Exit\n"
                             );
                         int menuSelect = int.Parse(Console.ReadLine());
-                        switch (menuSelect)
+                        if (menuSelect == 1)
                         {
-                            case 1:
-                                {
-                                    new Login(); //not printing content :not_stonks:
-                                    break;
-                                }
-                            case 0:
-                                {
-                                    Data.DataExport();
-                                    Console.WriteLine("Thank you. Bye");
-                                    Thread.Sleep(1000);
-                                    break;
-                                }
-                            default:
-                                {
-                                    Console.WriteLine("Try again...");
-                                    Thread.Sleep(1000);
-                                    break;
-                                }
+                            Login login = new Login();
+                            login.Run();
                         }
-                        state = false;
+                        else if (menuSelect == 0)
+                        {
+                            Data.DataExport();
+                            Console.WriteLine("Thank you. Bye");
+                            Thread.Sleep(1000);
+                            Environment.Exit(1);
+                        }
+
+                        //switch (menuSelect)
+                        //{
+                        //    case 1:
+                        //        {
+                        //            new Login();
+                        //            break;
+                        //        }
+                        //    case 0:
+                        //        {
+                        //            Data.DataExport();
+                        //            Console.WriteLine("Thank you. Bye");
+                        //            Thread.Sleep(1000);
+                        //            Environment.Exit(1);
+                        //            break;
+                        //        }
+                        //    default:
+                        //        {
+                        //            Console.WriteLine("Try again...");
+                        //            Thread.Sleep(1000);
+                        //            break;
+                        //        }
+                        //}
                     }
                     catch (ArgumentNullException)
                     {
@@ -69,7 +81,7 @@ namespace HospitalApp
                     }
 
                 }
-                    
+
             }
             catch (FileNotFoundException)
             {

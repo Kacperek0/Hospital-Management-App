@@ -46,19 +46,52 @@ namespace HospitalApp
 
         public void DataExport()
         {
-            StreamWriter writer = new StreamWriter(path);
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                foreach (var item in Doctors)
+                {
+                    writer.WriteLine(item.Export());
+                }
+                foreach (var item in Nurses)
+                {
+                    writer.WriteLine(item.Export());
+                }
+                foreach (var item in Administrators)
+                {
+                    writer.WriteLine(item.Export());
+                }
+            }
+
+        }
+
+        public int[] IsLoggedIn(string login, string password)
+        {
+            int[] result = new int[] { 0, 0 };
             foreach (var item in Doctors)
             {
-                writer.WriteLine(item.Export());
+                if (item.Login(login, password) == true)
+                {
+                    result = new int[] { 1, 1 };
+                    return result;
+                }
             }
             foreach (var item in Nurses)
             {
-                writer.WriteLine(item.Export());
+                if (item.Login(login, password) == true)
+                {
+                    result = new int[] { 1, 2 };
+                    return result;
+                }
             }
             foreach (var item in Administrators)
             {
-                writer.WriteLine(item.Export());
+                if (item.Login(login, password) == true)
+                {
+                    result = new int[] { 1, 0 };
+                    return result;
+                }
             }
+            return result;
         }
     }
 }

@@ -40,7 +40,7 @@ namespace HospitalEmployees
             if (this.login == login && this.password == password)
             {
                 Console.WriteLine("You have logged in successfully.");
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 return true;
             }
             else return false;

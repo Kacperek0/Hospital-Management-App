@@ -14,5 +14,6 @@ namespace HospitalEmployees
         {
             return $"{type};{Name};{Surname};{PESEL};{login};{password};null;null;null";
         }
+
     }
 }
