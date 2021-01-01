@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
+using HospitalApp.Submenus;
 
 namespace HospitalApp
 {
@@ -38,26 +39,43 @@ namespace HospitalApp
                     {
                         if (item.Login(login, password))
                         {
-                            Console.WriteLine("Admin login");
+                            string whoLoggedIn = item.FullName;
+                            Console.Clear();
+                            new AdminSubmenu();
                         }
                     }
                     foreach (var item in data.Doctors)
                     {
                         if (item.Login(login,password))
                         {
-                            Console.WriteLine("Doc login");
+                            string whoLoggedIn = item.FullName;
+                            Console.Clear();
+                            new DoctorSubmenu(whoLoggedIn);
                         }
                     }
                     foreach (var item in data.Nurses)
                     {
                         if (item.Login(login, password))
                         {
-                            Console.WriteLine("Nurse login");
+                            string whoLoggedIn = item.FullName;
+                            Console.Clear();
+                            new NurseSubmenu(whoLoggedIn);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Login has failed. Please try again");
+                            Thread.Sleep(2000);
+                            Console.Clear();
                         }
                     }
                 }
             }
         }
 
+        public string[] Credentials()
+        {
+            string[] cred = new string[] { login, password };
+            return cred;
+        }
     }
 }

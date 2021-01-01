@@ -26,11 +26,11 @@ namespace HospitalApp
                 string[] split = line.Split(';');
                 if (split[0] == "doctor")
                 {
-                    Doctors.Add(new Doctor(split[1], split[2], split[3], split[4], split[5], int.Parse(split[6]), split[7]));
+                    Doctors.Add(new Doctor(split[1], split[2], split[3], split[4], split[5], split[6], int.Parse(split[7]), split[8]));
                 }
                 else if (split[0] == "nurse")
                 {
-                    Nurses.Add(new Nurse(split[1], split[2], split[3], split[4], split[5]));
+                    Nurses.Add(new Nurse(split[1], split[2], split[3], split[4], split[5], split[6]));
                 }
                 else if (split[0] == "admin")
                 {
@@ -63,40 +63,5 @@ namespace HospitalApp
             }
 
         }
-
-        //public string IsLoggedIn(string login, string password)
-        //{
-        //    string role;
-
-        //    foreach (var item in Doctors)
-        //    {
-        //        if (item.Login(login, password) == true)
-        //        {
-        //            role = item.GetRole();
-        //            return role;
-        //        }
-        //    }
-        //    foreach (var item in Nurses)
-        //    {
-        //        if (item.Login(login, password) == true)
-        //        {
-        //            role = item.GetRole();
-        //            return role;
-        //        }
-        //    }
-        //    foreach (var item in Administrators)
-        //    {
-        //        if (item.Login(login, password) == true)
-        //        {
-        //            role = item.GetRole();
-        //            return role;
-        //        }
-        //        else
-        //        {
-        //            role = "failed";
-        //            return role;
-        //        }
-        //    }
-        //}
     }
 }

@@ -49,22 +49,8 @@ namespace HospitalEmployees
         //    }
         //}
         public List<int> Shifts { get; set; }
-        //{
-        //    get
-        //    {
-        //        Shifts.Sort();
-        //        return Shifts;
-        //    }
-        //    set
-        //    {
-        //        if (Shifts.Count > 10)
-        //        {
-        //            throw new Exceptions.TooManyShiftsException();
-        //        }
-        //    }
-        //}
 
-        public Doctor(string name, string surname, string PESEL, string login, string password,
+        public Doctor(string name, string surname, string PESEL, string login, string password, string shifts,
             int pwznumber, string specialization)
         {
             this.Role = "doctor";
@@ -76,6 +62,12 @@ namespace HospitalEmployees
             this.PWZnumber = pwznumber;
             this.Specialization = specialization;
             Shifts = new List<int>();
+
+            string[] split = shifts.Split(',');
+            foreach (var item in split)
+            {
+                Shifts.Add(int.Parse(item));
+            }
         }
 
         public override string GetRole()
@@ -83,27 +75,28 @@ namespace HospitalEmployees
             return "doctor";
         }
 
-        public void AddShift(int day)
-        {
-            if (!Shifts.Contains(day) && Shifts.Count < 10 )
-            {
-                Shifts.Add(day);
-                Shifts.Sort();
-            }
-            else
-            {
-                throw new Exceptions.AddShiftFailureException();
-            }
-        }
+        //public void AddShift(int day)
+        //{
+        //    if (!Shifts.Contains(day) && Shifts.Count < 10 )
+        //    {
+        //        Shifts.Add(day);
+        //        Shifts.Sort();
+        //    }
+        //    else
+        //    {
+        //        throw new Exceptions.AddShiftFailureException();
+        //    }
+        //}
 
-        public void RemoveShift(int index)
-        {
-            Shifts.Remove(index);
-            Shifts.Sort();
-        }
+        //public void RemoveShift(int index)
+        //{
+        //    Shifts.Remove(index);
+        //    Shifts.Sort();
+        //}
 
         public void ShowShifts()
         {
+            Console.WriteLine("There are scheduled shifts at following days of the month:");
             foreach (var item in Shifts)
             {
                 Console.Write($"{item}, ");

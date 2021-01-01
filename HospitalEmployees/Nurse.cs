@@ -23,7 +23,7 @@ namespace HospitalEmployees
         //    }
         //}
 
-        public Nurse(string name, string surname, string PESEL, string login, string password)
+        public Nurse(string name, string surname, string PESEL, string login, string password, string shifts)
         {
             this.Role = "nurse";
             this.Name = name;
@@ -32,6 +32,12 @@ namespace HospitalEmployees
             this.login = login;
             this.password = password;
             Shifts = new List<int>();
+
+            string[] split = shifts.Split(',');
+            foreach (var item in split)
+            {
+                Shifts.Add(int.Parse(item));
+            }
         }
 
         public override string GetRole()
@@ -39,27 +45,28 @@ namespace HospitalEmployees
             return "nurse";
         }
 
-        public void AddShift(int day)
-        {
-            if (!Shifts.Contains(day) && Shifts.Count < 10)
-            {
-                Shifts.Add(day);
-                Shifts.Sort();
-            }
-            else
-            {
-                throw new Exceptions.AddShiftFailureException();
-            }
-        }
+        //public void AddShift(int day)
+        //{
+        //    if (!Shifts.Contains(day) && Shifts.Count < 10)
+        //    {
+        //        Shifts.Add(day);
+        //        Shifts.Sort();
+        //    }
+        //    else
+        //    {
+        //        throw new Exceptions.AddShiftFailureException();
+        //    }
+        //}
 
-        public void RemoveShift(int index)
-        {
-            Shifts.Remove(index);
-            Shifts.Sort();
-        }
+        //public void RemoveShift(int index)
+        //{
+        //    Shifts.Remove(index);
+        //    Shifts.Sort();
+        //}
 
         public void ShowShifts()
         {
+            Console.WriteLine("There are scheduled shifts at following days of the month:");
             foreach (var item in Shifts)
             {
                 Console.Write($"{item}, ");
