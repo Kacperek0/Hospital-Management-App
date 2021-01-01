@@ -45,24 +45,32 @@ namespace HospitalEmployees
             return "nurse";
         }
 
-        //public void AddShift(int day)
-        //{
-        //    if (!Shifts.Contains(day) && Shifts.Count < 10)
-        //    {
-        //        Shifts.Add(day);
-        //        Shifts.Sort();
-        //    }
-        //    else
-        //    {
-        //        throw new Exceptions.AddShiftFailureException();
-        //    }
-        //}
+        public void AddShift(int day)
+        {
+            if (!Shifts.Contains(day) && Shifts.Count < 10 && day < 30 && day > 0)
+            {
+                Shifts.Add(day);
+                Shifts.Sort();
+            }
+            else
+            {
+                Console.WriteLine("Failed to add a shift.");
+            }
+        }
 
-        //public void RemoveShift(int index)
-        //{
-        //    Shifts.Remove(index);
-        //    Shifts.Sort();
-        //}
+        public void RemoveShift(int index)
+        {
+            if (Shifts.Contains(index))
+            {
+                Shifts.Remove(index);
+                Shifts.Sort();
+            }
+            else
+            {
+                Console.WriteLine("There is no such shift.");
+            }
+
+        }
 
         public void ShowShifts()
         {
@@ -77,9 +85,16 @@ namespace HospitalEmployees
         {
             string shifts_toexport = "";
 
-            foreach (int item in Shifts)
+            for (int i = 0; i < Shifts.Count; i++)
             {
-                shifts_toexport += $"{item},";
+                if (i == Shifts.Count - 1)
+                {
+                    shifts_toexport += $"{Shifts[i]}";
+                }
+                else
+                {
+                    shifts_toexport += $"{Shifts[i]},";
+                }
             }
             return $"{Role};{Name};{Surname};{PESEL};{login};{password};{shifts_toexport};null;null"; ;
         }

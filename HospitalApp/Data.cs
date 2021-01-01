@@ -63,5 +63,39 @@ namespace HospitalApp
             }
 
         }
+
+        public void AddNurse(string name, string surname, string PESEL, string login, string password)
+        {
+            //int checker = 0;
+
+
+            //foreach (var item in Nurses)
+            //{
+                
+            //    if (item.Name != name && item.Surname != surname)
+            //    {
+            //        checker++;
+            //    }
+            //    if (item.PESEL != PESEL)
+            //    {
+            //        checker++;
+            //    }
+            //    if (item.login != login)
+            //    {
+            //        checker++;
+            //    }
+            //}
+            Nurses.Add(new Nurse(name, surname, PESEL, login, password, "0"));
+        }
+
+        public void AddDoctor(string name, string surname, string PESEL, string login, string password, int pwznumber, string specialization)
+        {
+            Doctors.Add(new Doctor(name, surname, PESEL, login, password, "0", pwznumber, specialization));
+        }
+
+        public void AddAdmin(string name, string surname, string PESEL, string login, string password)
+        {
+            Administrators.Add(new Administrator(name, surname, PESEL, login, password));
+        }
     }
 }

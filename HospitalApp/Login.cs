@@ -41,7 +41,7 @@ namespace HospitalApp
                         {
                             string whoLoggedIn = item.FullName;
                             Console.Clear();
-                            new AdminSubmenu();
+                            new AdminSubmenu(whoLoggedIn);
                         }
                     }
                     foreach (var item in data.Doctors)
@@ -61,21 +61,15 @@ namespace HospitalApp
                             Console.Clear();
                             new NurseSubmenu(whoLoggedIn);
                         }
-                        else
-                        {
-                            Console.WriteLine("Login has failed. Please try again");
-                            Thread.Sleep(2000);
-                            Console.Clear();
-                        }
                     }
+                    
+                    Console.WriteLine("Login has failed. Please try again");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+
+                    
                 }
             }
-        }
-
-        public string[] Credentials()
-        {
-            string[] cred = new string[] { login, password };
-            return cred;
         }
     }
 }
