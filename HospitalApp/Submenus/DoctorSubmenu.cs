@@ -28,6 +28,7 @@ namespace HospitalApp.Submenus
                     foreach (var item in data.Doctors)
                     {
                         Console.WriteLine($"{iter}. {item.FullName} - {item.Role}, {item.Specialization}");
+                        iter++;
                     }
                     holder();
                 }

@@ -31,7 +31,7 @@ namespace HospitalApp
                         int menuSelect = int.Parse(Console.ReadLine());
                         if (menuSelect == 1)
                         {
-                            Login login = new Login();
+                            new Login();
                         }
                         else if (menuSelect == 0)
                         {

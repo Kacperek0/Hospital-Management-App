@@ -23,7 +23,7 @@ namespace HospitalEmployees
         //        //}
         //    }
         //}
-        protected string login { get; set; }
+        public string login { get; set; }
         protected string password { get; set; }
 
         public string FullName

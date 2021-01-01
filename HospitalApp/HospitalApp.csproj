@@ -46,6 +46,8 @@
     <Compile Include="Submenus\AdminSubmenu.cs" />
     <Compile Include="Submenus\DoctorSubmenu.cs" />
     <Compile Include="Submenus\NurseSubmenu.cs" />
+    <Compile Include="Submenus\AdminSchedulesSubmenu.cs" />
+    <Compile Include="Submenus\AdminCreationSubmenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HospitalEmployees\HospitalEmployees.csproj">
