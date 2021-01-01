@@ -3,12 +3,12 @@ using System.Threading;
 
 namespace HospitalEmployees
 {
-    public class Employee
+    public abstract class Employee
     {
-        private string type = "emp";
-        public string Name;
-        public string Surname;
-        public string PESEL;
+        public string Role { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string PESEL { get; set; }
         //{
         //    get { return PESEL; }
         //    set
@@ -23,32 +23,25 @@ namespace HospitalEmployees
         //        //}
         //    }
         //}
-        protected string login;
-        protected string password;
+        protected string login { get; set; }
+        protected string password { get; set; }
 
-        public Employee(string name, string surname, string PESEL, string login, string password)
+        public string FullName
         {
-            this.Name = name;
-            this.Surname = surname;
-            this.PESEL = PESEL;
-            this.login = login;
-            this.password = password;
+            get
+            {
+                return String.Format($"{Name} {Surname}");
+            }
         }
 
-        //protected virtual bool Login(string login, string password)
-        //{
-        //    if (this.login == login && this.password == password)
-        //    {
-        //        Console.WriteLine("You have logged in successfully.");
-        //        Thread.Sleep(1000);
-        //        return true;
-        //    }
-        //    else return false;
-        //}
+        public virtual string GetRole()
+        {
+            return "employee";
+        }
 
         public virtual string Export()
         {
-            return $"{type};{Name};{Surname};{PESEL};{login};{password};null;null;null"; ;
+            return $"{Role};{Name};{Surname};{PESEL};{login};{password};null;null;null"; ;
         }
     }
 }

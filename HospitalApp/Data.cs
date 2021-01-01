@@ -64,35 +64,39 @@ namespace HospitalApp
 
         }
 
-        public string IsLoggedIn(string login, string password)
-        {
-            string result = "";
-            foreach (var item in Doctors)
-            {
-                if (item.Login(login, password) == true)
-                {
-                    string inner_result = "doctor";
-                    return inner_result;
-                }
-            }
-            foreach (var item in Nurses)
-            {
-                if (item.Login(login, password) == true)
-                {
-                    string inner_result = "nurse";
-                    result = inner_result;
-                }
-            }
-            foreach (var item in Administrators)
-            {
-                if (item.Login(login, password) == true)
-                {
-                    Console.WriteLine("dupa");
-                    string inner_result = "admin";
-                    result = inner_result;
-                }
-            }
-            return result;
-        }
+        //public string IsLoggedIn(string login, string password)
+        //{
+        //    string role;
+
+        //    foreach (var item in Doctors)
+        //    {
+        //        if (item.Login(login, password) == true)
+        //        {
+        //            role = item.GetRole();
+        //            return role;
+        //        }
+        //    }
+        //    foreach (var item in Nurses)
+        //    {
+        //        if (item.Login(login, password) == true)
+        //        {
+        //            role = item.GetRole();
+        //            return role;
+        //        }
+        //    }
+        //    foreach (var item in Administrators)
+        //    {
+        //        if (item.Login(login, password) == true)
+        //        {
+        //            role = item.GetRole();
+        //            return role;
+        //        }
+        //        else
+        //        {
+        //            role = "failed";
+        //            return role;
+        //        }
+        //    }
+        //}
     }
 }

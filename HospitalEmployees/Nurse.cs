@@ -6,7 +6,6 @@ namespace HospitalEmployees
 {
     public class Nurse: Employee
     {
-        private string type = "nurse";
 
         public List<int> Shifts;
         //{
@@ -24,10 +23,20 @@ namespace HospitalEmployees
         //    }
         //}
 
-        public Nurse(string name, string surname, string PESEL, string login, string password) :
-                base(name, surname, PESEL, login, password)
+        public Nurse(string name, string surname, string PESEL, string login, string password)
         {
+            this.Role = "nurse";
+            this.Name = name;
+            this.Surname = surname;
+            this.PESEL = PESEL;
+            this.login = login;
+            this.password = password;
             Shifts = new List<int>();
+        }
+
+        public override string GetRole()
+        {
+            return "admin";
         }
 
         public void AddShift(int day)
@@ -65,7 +74,7 @@ namespace HospitalEmployees
             {
                 shifts_toexport += $"{item},";
             }
-            return $"{type};{Name};{Surname};{PESEL};{login};{password};{shifts_toexport};null;null"; ;
+            return $"{Role};{Name};{Surname};{PESEL};{login};{password};{shifts_toexport};null;null"; ;
         }
 
         public bool Login(string login, string password)

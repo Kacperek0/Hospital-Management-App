@@ -5,21 +5,30 @@ namespace HospitalEmployees
 {
     public class Administrator: Employee
     {
-        private string type = "admin";
-
-        public Administrator(string name, string surname, string PESEL, string login, string password) :
-                base(name, surname, PESEL, login, password)
+        public Administrator(string name, string surname, string PESEL, string login, string password)
         {
+            this.Role = "admin";
+            this.Name = name;
+            this.Surname = surname;
+            this.PESEL = PESEL;
+            this.login = login;
+            this.password = password;
+
+        }
+
+        public override string GetRole()
+        {
+            return "admin";
         }
 
         public override string Export()
         {
-            return $"{type};{Name};{Surname};{PESEL};{login};{password};null;null;null";
+            return $"{Role};{Name};{Surname};{PESEL};{login};{password};null;null;null";
         }
 
         public bool Login(string login, string password)
         {
-            if (base.login == login && base.password == password)
+            if (this.login == login && this.password == password)
             {
                 Console.WriteLine("You have logged in successfully.");
                 Thread.Sleep(1000);

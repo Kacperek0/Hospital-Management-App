@@ -6,8 +6,7 @@ namespace HospitalEmployees
 {
     public class Doctor: Employee
     {
-        private string type = "doctor";
-        public int PWZnumber;
+        public int PWZnumber { get; set; }
         //{
         //    get { return PWZnumber;  }
         //    private set
@@ -22,7 +21,7 @@ namespace HospitalEmployees
         //        }
         //    }
         //}
-        public string Specialization;
+        public string Specialization { get; set; }
         //{
         //    get { return Specialization; }
         //    private set
@@ -49,7 +48,7 @@ namespace HospitalEmployees
         //        }
         //    }
         //}
-        public List<int> Shifts;
+        public List<int> Shifts { get; set; }
         //{
         //    get
         //    {
@@ -66,12 +65,22 @@ namespace HospitalEmployees
         //}
 
         public Doctor(string name, string surname, string PESEL, string login, string password,
-            int pwznumber, string specialization):
-                base(name, surname, PESEL, login, password)
+            int pwznumber, string specialization)
         {
+            this.Role = "doctor";
+            this.Name = name;
+            this.Surname = surname;
+            this.PESEL = PESEL;
+            this.login = login;
+            this.password = password;
             this.PWZnumber = pwznumber;
             this.Specialization = specialization;
             Shifts = new List<int>();
+        }
+
+        public override string GetRole()
+        {
+            return "admin";
         }
 
         public void AddShift(int day)
@@ -109,7 +118,7 @@ namespace HospitalEmployees
             {
                 shifts_toexport += $"{item},";
             }
-            return $"{type};{Name};{Surname};{PESEL};{login};{password};{shifts_toexport};{PWZnumber};{Specialization}";
+            return $"{Role};{Name};{Surname};{PESEL};{login};{password};{shifts_toexport};{PWZnumber};{Specialization}";
         }
 
         public bool Login(string login, string password)

@@ -34,26 +34,26 @@ namespace HospitalApp
                     Console.WriteLine("Please input your password.");
                     password = Console.ReadLine();
 
-                    Console.WriteLine(data.IsLoggedIn(login, password));
-
-                    string credentials = data.IsLoggedIn(login, password);
-
-                    if (credentials == "admin")
+                    foreach (var item in data.Administrators)
                     {
-                        Console.WriteLine("admSubmenu here");
+                        if (item.Login(login, password))
+                        {
+                            Console.WriteLine("Admin login");
+                        }
                     }
-                    else if (credentials == "doctor")
+                    foreach (var item in data.Doctors)
                     {
-                        Console.WriteLine("Doc login menu");
+                        if (item.Login(login,password))
+                        {
+                            Console.WriteLine("Doc login");
+                        }
                     }
-                    else if (credentials == "nurse")
+                    foreach (var item in data.Nurses)
                     {
-                        Console.WriteLine("Nurse login");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Login has failed. Please try again...");
-                        Thread.Sleep(1000);
+                        if (item.Login(login, password))
+                        {
+                            Console.WriteLine("Nurse login");
+                        }
                     }
                 }
             }
