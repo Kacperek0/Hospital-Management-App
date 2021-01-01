@@ -80,7 +80,7 @@ namespace HospitalEmployees
 
         public override string GetRole()
         {
-            return "admin";
+            return "doctor";
         }
 
         public void AddShift(int day)

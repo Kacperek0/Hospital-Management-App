@@ -36,7 +36,7 @@ namespace HospitalEmployees
 
         public override string GetRole()
         {
-            return "admin";
+            return "nurse";
         }
 
         public void AddShift(int day)
