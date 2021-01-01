@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace HospitalEmployees
 {
     public class Nurse: Employee
     {
-        private string type = "nurse";
 
         public List<int> Shifts;
         //{
@@ -23,33 +23,50 @@ namespace HospitalEmployees
         //    }
         //}
 
-        public Nurse(string name, string surname, string PESEL, string login, string password) :
-                base(name, surname, PESEL, login, password)
+        public Nurse(string name, string surname, string PESEL, string login, string password, string shifts)
         {
+            this.Role = "nurse";
+            this.Name = name;
+            this.Surname = surname;
+            this.PESEL = PESEL;
+            this.login = login;
+            this.password = password;
             Shifts = new List<int>();
-        }
 
-        public void AddShift(int day)
-        {
-            if (!Shifts.Contains(day) && Shifts.Count < 10)
+            string[] split = shifts.Split(',');
+            foreach (var item in split)
             {
-                Shifts.Add(day);
-                Shifts.Sort();
-            }
-            else
-            {
-                throw new Exceptions.AddShiftFailureException();
+                Shifts.Add(int.Parse(item));
             }
         }
 
-        public void RemoveShift(int index)
+        public override string GetRole()
         {
-            Shifts.Remove(index);
-            Shifts.Sort();
+            return "nurse";
         }
+
+        //public void AddShift(int day)
+        //{
+        //    if (!Shifts.Contains(day) && Shifts.Count < 10)
+        //    {
+        //        Shifts.Add(day);
+        //        Shifts.Sort();
+        //    }
+        //    else
+        //    {
+        //        throw new Exceptions.AddShiftFailureException();
+        //    }
+        //}
+
+        //public void RemoveShift(int index)
+        //{
+        //    Shifts.Remove(index);
+        //    Shifts.Sort();
+        //}
 
         public void ShowShifts()
         {
+            Console.WriteLine("There are scheduled shifts at following days of the month:");
             foreach (var item in Shifts)
             {
                 Console.Write($"{item}, ");
@@ -64,7 +81,18 @@ namespace HospitalEmployees
             {
                 shifts_toexport += $"{item},";
             }
-            return $"{type};{Name};{Surname};{PESEL};{login};{password};{shifts_toexport};null;null"; ;
+            return $"{Role};{Name};{Surname};{PESEL};{login};{password};{shifts_toexport};null;null"; ;
+        }
+
+        public bool Login(string login, string password)
+        {
+            if (base.login == login && base.password == password)
+            {
+                Console.WriteLine("You have logged in successfully.");
+                Thread.Sleep(1000);
+                return true;
+            }
+            else return false;
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace HospitalEmployees
 {
     public class Doctor: Employee
     {
-        private string type = "doctor";
-        public int PWZnumber;
+        public int PWZnumber { get; set; }
         //{
         //    get { return PWZnumber;  }
         //    private set
@@ -21,7 +21,7 @@ namespace HospitalEmployees
         //        }
         //    }
         //}
-        public string Specialization;
+        public string Specialization { get; set; }
         //{
         //    get { return Specialization; }
         //    private set
@@ -48,52 +48,55 @@ namespace HospitalEmployees
         //        }
         //    }
         //}
-        public List<int> Shifts;
-        //{
-        //    get
-        //    {
-        //        Shifts.Sort();
-        //        return Shifts;
-        //    }
-        //    set
-        //    {
-        //        if (Shifts.Count > 10)
-        //        {
-        //            throw new Exceptions.TooManyShiftsException();
-        //        }
-        //    }
-        //}
+        public List<int> Shifts { get; set; }
 
-        public Doctor(string name, string surname, string PESEL, string login, string password,
-            int pwznumber, string specialization):
-                base(name, surname, PESEL, login, password)
+        public Doctor(string name, string surname, string PESEL, string login, string password, string shifts,
+            int pwznumber, string specialization)
         {
+            this.Role = "doctor";
+            this.Name = name;
+            this.Surname = surname;
+            this.PESEL = PESEL;
+            this.login = login;
+            this.password = password;
             this.PWZnumber = pwznumber;
             this.Specialization = specialization;
             Shifts = new List<int>();
-        }
 
-        public void AddShift(int day)
-        {
-            if (!Shifts.Contains(day) && Shifts.Count < 10 )
+            string[] split = shifts.Split(',');
+            foreach (var item in split)
             {
-                Shifts.Add(day);
-                Shifts.Sort();
-            }
-            else
-            {
-                throw new Exceptions.AddShiftFailureException();
+                Shifts.Add(int.Parse(item));
             }
         }
 
-        public void RemoveShift(int index)
+        public override string GetRole()
         {
-            Shifts.Remove(index);
-            Shifts.Sort();
+            return "doctor";
         }
+
+        //public void AddShift(int day)
+        //{
+        //    if (!Shifts.Contains(day) && Shifts.Count < 10 )
+        //    {
+        //        Shifts.Add(day);
+        //        Shifts.Sort();
+        //    }
+        //    else
+        //    {
+        //        throw new Exceptions.AddShiftFailureException();
+        //    }
+        //}
+
+        //public void RemoveShift(int index)
+        //{
+        //    Shifts.Remove(index);
+        //    Shifts.Sort();
+        //}
 
         public void ShowShifts()
         {
+            Console.WriteLine("There are scheduled shifts at following days of the month:");
             foreach (var item in Shifts)
             {
                 Console.Write($"{item}, ");
@@ -108,7 +111,18 @@ namespace HospitalEmployees
             {
                 shifts_toexport += $"{item},";
             }
-            return $"{type};{Name};{Surname};{PESEL};{login};{password};{shifts_toexport};{PWZnumber};{Specialization}";
+            return $"{Role};{Name};{Surname};{PESEL};{login};{password};{shifts_toexport};{PWZnumber};{Specialization}";
+        }
+
+        public bool Login(string login, string password)
+        {
+            if (base.login == login && base.password == password)
+            {
+                Console.WriteLine("You have logged in successfully.");
+                Thread.Sleep(1000);
+                return true;
+            }
+            else return false;
         }
     }
 }
