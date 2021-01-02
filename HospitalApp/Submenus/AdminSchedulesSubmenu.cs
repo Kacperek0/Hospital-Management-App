@@ -41,9 +41,15 @@ namespace HospitalApp.Submenus
                     {
                         if (person == item.FullName.ToLower())
                         {
-
-                            item.AddShift(newDuty);
-                            data.DataExport();
+                            if (item.Shifts.Contains(newDuty + 1) || item.Shifts.Contains(newDuty - 1))
+                            {
+                                Console.WriteLine("Unable to add. Shifts cannot happen day by day.");
+                            }
+                            else
+                            {
+                                item.AddShift(newDuty);
+                                data.DataExport();
+                            }
                         }
 
                     }
@@ -51,8 +57,19 @@ namespace HospitalApp.Submenus
                     {
                         if (person == item.FullName.ToLower())
                         {
-                            item.AddShift(newDuty);
-                            data.DataExport();
+                            if (item.Shifts.Contains(newDuty + 1) || item.Shifts.Contains(newDuty - 1))
+                            {
+                                Console.WriteLine("Unable to add. Shifts cannot happen day by day.");
+                            }
+                            else if (isOnDutyThatDay(item.Specialization, newDuty))
+                            {
+                                Console.WriteLine("There is already doctor with this specialization on duty that day.");
+                            }
+                            else
+                            {
+                                item.AddShift(newDuty);
+                                data.DataExport();
+                            }
                         }
                     }
                     holder();
@@ -68,22 +85,29 @@ namespace HospitalApp.Submenus
                     int dutyToBeRemoved = int.Parse(Console.ReadLine());
                     foreach (var item in data.Nurses)
                     {
-                        if (person == item.FullName.ToLower())
+                        if (person == item.FullName.ToLower() && item.Shifts.Count != 0)
                         {
-
                             item.RemoveShift(dutyToBeRemoved);
                             holder();
                             data.DataExport();
+                        }
+                        else
+                        {
+                            Console.WriteLine("There have to be at least one shift scheduled.");
                         }
 
                     }
                     foreach (var item in data.Doctors)
                     {
-                        if (person == item.FullName.ToLower())
+                        if (person == item.FullName.ToLower() && item.Shifts.Count != 0)
                         {
                             item.RemoveShift(dutyToBeRemoved);
                             holder();
                             data.DataExport();
+                        }
+                        else
+                        {
+                            Console.WriteLine("There have to be at least one shift scheduled.");
                         }
                     }
                 }
@@ -118,6 +142,26 @@ namespace HospitalApp.Submenus
             Console.WriteLine("\nPress any key to return to main menu...");
             Console.ReadKey();
             Console.Clear();
+        }
+
+        private bool isOnDutyThatDay (string specialization, int dutyDay)
+        {
+            int check = data.Doctors.Count;
+            foreach (var item in data.Doctors)
+            {
+                if (item.Shifts.Contains(dutyDay) && item.Specialization == specialization)
+                {
+                    check--;
+                }
+            }
+            if (check != data.Doctors.Count)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
