@@ -159,7 +159,7 @@ namespace HospitalApp.Submenus
                         }
                     }
 
-                    if (check == (3 * data.Nurses.Count))
+                    if (check == (3 * data.Administrators.Count))
                     {
                         data.AddAdmin(name, surname, PESEL, login, password);
                         data.DataExport();
