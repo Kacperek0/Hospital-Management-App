@@ -90,15 +90,23 @@ namespace HospitalEmployees
 
         public void RemoveShift(int index)
         {
-            if (Shifts.Contains(index))
+            if (Shifts.Count > 0)
             {
-                Shifts.Remove(index);
-                Shifts.Sort();
+                if (Shifts.Contains(index))
+                {
+                    Shifts.Remove(index);
+                    Shifts.Sort();
+                }
+                else
+                {
+                    Console.WriteLine("There is no such shift.");
+                }
             }
             else
             {
-                Console.WriteLine("There is no such shift.");
+                Console.WriteLine("There have to be at leat one shift.");
             }
+            
         }
 
         public void ShowShifts()
