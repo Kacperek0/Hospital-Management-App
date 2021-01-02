@@ -38,11 +38,16 @@ namespace HospitalApp.Submenus
 
                     Console.WriteLine("Enter the name and surname for a person you'd like to see a schedule.");
                     string person = Console.ReadLine().ToLower();
+                    int check = 0;
                     foreach (var item in data.Nurses)
                     {
                         if (person == item.FullName.ToLower())
                         {
                             item.ShowShifts();
+                        }
+                        else
+                        {
+                            check++;
                         }
                     }
                     foreach (var item in data.Doctors)
@@ -51,6 +56,14 @@ namespace HospitalApp.Submenus
                         {
                             item.ShowShifts();
                         }
+                        else
+                        {
+                            check++;
+                        }
+                    }
+                    if (check == (data.Nurses.Count + data.Doctors.Count))
+                    {
+                        Console.WriteLine("No such person found. Please try again.");
                     }
                     holder();
                 }

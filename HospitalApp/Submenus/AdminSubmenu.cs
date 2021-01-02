@@ -41,7 +41,7 @@ namespace HospitalApp.Submenus
                 else if (selection == 2)
                 {
                     Console.Clear();
-
+                    int check = 0;
                     Console.WriteLine("Enter the name and surname for a person you'd like to see a schedule.");
                     string person = Console.ReadLine().ToLower();
                     foreach (var item in data.Nurses)
@@ -50,6 +50,10 @@ namespace HospitalApp.Submenus
                         {
                             item.ShowShifts();
                         }
+                        else
+                        {
+                            check++;
+                        }
                     }
                     foreach (var item in data.Doctors)
                     {
@@ -57,13 +61,21 @@ namespace HospitalApp.Submenus
                         {
                             item.ShowShifts();
                         }
+                        else
+                        {
+                            check++;
+                        }
+                    }
+                    if (check == (data.Nurses.Count + data.Doctors.Count))
+                    {
+                        Console.WriteLine("No such person found. Please try again.");
                     }
                     holder();
                 }
                 else if (selection == 3)
                 {
                     Console.Clear();
-
+                    int check = 0;
                     Console.WriteLine("Enter name and surname for person you'd like to make changes in schedules.");
                     string person = Console.ReadLine().ToLower();
                     foreach (var item in data.Nurses)
@@ -72,6 +84,10 @@ namespace HospitalApp.Submenus
                         {
                             new AdminSchedulesSubmenu(person);
                         }
+                        else
+                        {
+                            check++;
+                        }
                     }
                     foreach (var item in data.Doctors)
                     {
@@ -79,6 +95,14 @@ namespace HospitalApp.Submenus
                         {
                             new AdminSchedulesSubmenu(person);
                         }
+                        else
+                        {
+                            check++;
+                        }
+                    }
+                    if (check == (data.Nurses.Count + data.Doctors.Count))
+                    {
+                        Console.WriteLine("No such person found. Please try again.");
                     }
                     holder();
 
