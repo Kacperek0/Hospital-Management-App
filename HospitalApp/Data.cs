@@ -11,7 +11,10 @@ namespace HospitalApp
         public List<Doctor> Doctors = new List<Doctor>();
         public List<Nurse> Nurses = new List<Nurse>();
         public List<Administrator> Administrators = new List<Administrator>();
-        private string path = "/Users/kacper.szczepanek/data.csv";
+        public string homePath = (Environment.OSVersion.Platform == PlatformID.Unix ||
+                   Environment.OSVersion.Platform == PlatformID.MacOSX)
+                 ? Environment.GetEnvironmentVariable("HOME")
+                 : Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");
 
         public Data()
         {
@@ -20,7 +23,7 @@ namespace HospitalApp
 
         private void DataImport()
         {
-            string[] lines = File.ReadAllLines(path);
+            string[] lines = File.ReadAllLines($"{homePath}/data.csv");
             foreach (string line in lines)
             {
                 string[] split = line.Split(';');
@@ -46,7 +49,7 @@ namespace HospitalApp
 
         public void DataExport()
         {
-            using (StreamWriter writer = new StreamWriter(path))
+            using (StreamWriter writer = new StreamWriter($"{homePath}/data.csv"))
             {
                 foreach (var item in Doctors)
                 {
@@ -66,25 +69,6 @@ namespace HospitalApp
 
         public void AddNurse(string name, string surname, string PESEL, string login, string password)
         {
-            //int checker = 0;
-
-
-            //foreach (var item in Nurses)
-            //{
-                
-            //    if (item.Name != name && item.Surname != surname)
-            //    {
-            //        checker++;
-            //    }
-            //    if (item.PESEL != PESEL)
-            //    {
-            //        checker++;
-            //    }
-            //    if (item.login != login)
-            //    {
-            //        checker++;
-            //    }
-            //}
             Nurses.Add(new Nurse(name, surname, PESEL, login, password, "0"));
         }
 
