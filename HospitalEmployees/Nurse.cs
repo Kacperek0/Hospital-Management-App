@@ -60,7 +60,7 @@ namespace HospitalEmployees
 
         public void RemoveShift(int index)
         {
-            if (Shifts.Count > 0)
+            if (Shifts.Count > 1)
             {
                 if (Shifts.Contains(index))
                 {

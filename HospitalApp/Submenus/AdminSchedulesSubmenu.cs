@@ -85,17 +85,12 @@ namespace HospitalApp.Submenus
                     int dutyToBeRemoved = int.Parse(Console.ReadLine());
                     foreach (var item in data.Nurses)
                     {
-                        if (person == item.FullName.ToLower() && item.Shifts.Count != 0)
+                        if (person == item.FullName.ToLower())
                         {
                             item.RemoveShift(dutyToBeRemoved);
                             holder();
                             data.DataExport();
                         }
-                        else
-                        {
-                            Console.WriteLine("There have to be at least one shift scheduled.");
-                        }
-
                     }
                     foreach (var item in data.Doctors)
                     {
@@ -104,10 +99,6 @@ namespace HospitalApp.Submenus
                             item.RemoveShift(dutyToBeRemoved);
                             holder();
                             data.DataExport();
-                        }
-                        else
-                        {
-                            Console.WriteLine("There have to be at least one shift scheduled.");
                         }
                     }
                 }
