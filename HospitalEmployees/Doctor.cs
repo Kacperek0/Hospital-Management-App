@@ -7,47 +7,7 @@ namespace HospitalEmployees
     public class Doctor: Employee
     {
         public int PWZnumber { get; set; }
-        //{
-        //    get { return PWZnumber;  }
-        //    private set
-        //    {
-        //        if (PWZnumber.ToString().Length != 7)
-        //        {
-        //            throw new Exceptions.PWZnumberLengthException();
-        //        }
-        //        else
-        //        {
-        //            PWZnumber = value;
-        //        }
-        //    }
-        //}
         public string Specialization { get; set; }
-        //{
-        //    get { return Specialization; }
-        //    private set
-        //    {
-        //        if (Specialization.ToLower() == "cardiologist")
-        //        {
-        //            Specialization = value;
-        //        }
-        //        else if (Specialization.ToLower() == "urologist")
-        //        {
-        //            Specialization = value;
-        //        }
-        //        else if (Specialization.ToLower() == "neurologist")
-        //        {
-        //            Specialization = value;
-        //        }
-        //        else if (Specialization.ToLower() == "laryngologist")
-        //        {
-        //            Specialization = value;
-        //        }
-        //        else
-        //        {
-        //            throw new Exceptions.BadSpecializationException();
-        //        }
-        //    }
-        //}
         public List<int> Shifts { get; set; }
 
         public Doctor(string name, string surname, string PESEL, string login, string password, string shifts,
@@ -90,7 +50,7 @@ namespace HospitalEmployees
 
         public void RemoveShift(int index)
         {
-            if (Shifts.Count > 0)
+            if (Shifts.Count > 1)
             {
                 if (Shifts.Contains(index))
                 {
