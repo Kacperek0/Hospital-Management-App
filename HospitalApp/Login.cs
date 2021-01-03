@@ -24,6 +24,7 @@ namespace HospitalApp
                             $"\n"
                         );
                 Console.WriteLine("Please input your login or type 0 to return to the main menu.\n");
+                Console.Write("Login: ");
                 login = Console.ReadLine();
                 if (login == "0")
                 {
@@ -32,7 +33,8 @@ namespace HospitalApp
                 }
                 else
                 {
-                    Console.WriteLine("Please input your password.");
+                    Console.WriteLine("Please input your password.\n");
+                    Console.Write("Password: ");
                     password = Console.ReadLine();
 
                     foreach (var item in data.Administrators)

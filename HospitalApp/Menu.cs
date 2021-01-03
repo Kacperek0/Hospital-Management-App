@@ -25,12 +25,13 @@ namespace HospitalApp
                             $"\n" +
                             $"\n" +
                             $"Please press button to continue...\n\n");
-                        Console.WriteLine("1. Log in\n" +
+                        Console.WriteLine("1. Log in\n\n" +
                         "0. Exit\n"
                             );
                         int menuSelect = int.Parse(Console.ReadLine());
                         if (menuSelect == 1)
                         {
+                            Console.Clear();
                             new Login();
                         }
                         else if (menuSelect == 0)

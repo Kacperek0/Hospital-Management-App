@@ -12,6 +12,7 @@ namespace HospitalApp.Submenus
             while (true)
             {
                 data = new Data();
+                Console.Clear();
                 Console.WriteLine("Please select which user type you'd like to create:\n" +
                     "1. Nurse\n" +
                     "2. Doctor\n" +
@@ -121,7 +122,7 @@ namespace HospitalApp.Submenus
                             "1. Cardiologist\n" +
                             "2. Urologist\n" +
                             "3. Neurologist\n" +
-                            "4. Laryngologist");
+                            "4. Laryngologist\n\n");
                         Thread.Sleep(1000);
                     }
 
